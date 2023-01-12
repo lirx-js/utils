@@ -8,6 +8,7 @@
     "url": "https://github.com/lirx-js/utils"
   },
   "keywords": [],
+  "sideEffects": false,
   "author": "Valentin Richard",
   "license": "MIT",
   "access": "public",

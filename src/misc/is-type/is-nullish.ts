@@ -1,4 +1,7 @@
-export type INullish = null | undefined;
+export type INullish =
+  | null
+  | undefined
+  ;
 
 export function isNullish(
   value: any,
