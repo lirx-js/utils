@@ -1,9 +1,8 @@
+import { IUnsubscribe } from '../../unsubscribe/unsubscribe.type';
 import { IEventListenerFromEventMap } from '../types/event-listener.type';
 import { IReadonlyEventTarget } from '../types/readonly-event-target.type';
 
-export interface IRemoveEventListener {
-  (): void;
-}
+export type IRemoveEventListener = IUnsubscribe;
 
 export function createEventListener<GType extends string, GEvent extends Event>(
   target: IReadonlyEventTarget<Record<GType, GEvent>>,

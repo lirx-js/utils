@@ -7,7 +7,9 @@ export function createAbortError(
 ): IAbortError {
   return createCustomError<IAbortErrorName, IAbortErrorProperties>({
     name: ABORT_ERROR_NAME,
-    message: 'Aborted',
+    message: (typeof options?.signal?.reason === 'string')
+      ? options!.signal!.reason
+      : 'Aborted',
     signal: void 0,
     ...options,
   });

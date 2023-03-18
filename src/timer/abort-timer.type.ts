@@ -1,4 +1,4 @@
-export interface IAbortTimer {
-  (): void;
-}
+import { IUnsubscribe } from '../unsubscribe/unsubscribe.type';
+
+export type IAbortTimer = IUnsubscribe;
 

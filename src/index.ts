@@ -5,3 +5,4 @@ export * from './polyfill/index';
 export * from './stream/index';
 export * from './timer/index';
 export * from './types/index';
+export * from './unsubscribe/index';
