@@ -13,7 +13,7 @@ export type IEventTargetToEventMapUnion =
   | [ConstantSourceNode, AudioScheduledSourceNodeEventMap]
   // | [DataCue, TextTrackCueEventMap]
   | [Document, DocumentEventMap]
-  | [DocumentAndElementEventHandlers, DocumentAndElementEventHandlersEventMap] // -
+  // | [DocumentAndElementEventHandlers, DocumentAndElementEventHandlersEventMap] // -
   | [Element, ElementEventMap]
   | [FileReader, FileReaderEventMap]
   | [GlobalEventHandlers, GlobalEventHandlersEventMap] // -
