@@ -1,3 +1,5 @@
+export * from './deep-partial.type';
+export * from './deep-writable.type';
 export * from './generic-function.type';
 export * from './is-union.type';
 export * from './tuple-types.type';
