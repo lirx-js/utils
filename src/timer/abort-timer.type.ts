@@ -1,4 +1,4 @@
-import { IUnsubscribe } from '../unsubscribe/unsubscribe.type';
+import { IUnsubscribe } from '@lirx/unsubscribe';
 
 export type IAbortTimer = IUnsubscribe;
 

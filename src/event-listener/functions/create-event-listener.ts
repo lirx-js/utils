@@ -1,6 +1,6 @@
-import { IUnsubscribe } from '../../unsubscribe/unsubscribe.type';
 import { IEventListenerFromEventMap } from '../types/event-listener.type';
 import { IReadonlyEventTarget } from '../types/readonly-event-target.type';
+import { IUnsubscribe } from '@lirx/unsubscribe';
 
 export type IRemoveEventListener = IUnsubscribe;
 

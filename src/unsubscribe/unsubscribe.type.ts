@@ -1,3 +1,0 @@
-export interface IUnsubscribe {
-  (): void;
-}

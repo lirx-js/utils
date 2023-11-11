@@ -1,6 +1,0 @@
-export * from './distinct/index';
-export * from './equal-function/index';
-export * from './is-type/index';
-export * from './tokens/index';
-export * from './noop';
-export * from './tuple';
