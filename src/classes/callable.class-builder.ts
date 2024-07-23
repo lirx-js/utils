@@ -9,6 +9,7 @@ import { noop } from '../misc/noop';
 export function Callable<GClass extends IGenericConstructor, GCallableClass extends IGenericConstructor>(
   _class: GClass,
   _fnc: IGenericFunction,
+  // propertiesReturningThis: Set<keyof InstanceType<GClass>> = new Set<any>(),
 ): GCallableClass {
   return (class extends _class {
     constructor(...args: any[]) {
@@ -24,9 +25,18 @@ export function Callable<GClass extends IGenericConstructor, GCallableClass exte
         get: (_, propertyKey: PropertyKey): any => {
           const value = (this as any)[propertyKey];
           // const value: any = Reflect.get(this, propertyKey);
-          return (typeof value === 'function')
-            ? value.bind(this)
-            : value;
+          if (value === this) {
+            return PROXY;
+          } else if (typeof value === 'function') {
+            return (...args: any[]): any => {
+              const result: any = value.apply(this, args);
+              return (result === this)
+                ? PROXY
+                : result;
+            };
+          } else {
+            return value;
+          }
         },
         set: (_, propertyKey: PropertyKey, value: any): boolean => {
           return Reflect.set(
@@ -46,7 +56,6 @@ export function Callable<GClass extends IGenericConstructor, GCallableClass exte
     }
   }) as any;
 }
-
 
 export function getCallableInstanceThis(
   instance: any,

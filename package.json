@@ -1,6 +1,6 @@
 {
   "name": "@lirx/utils",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Various util functions",
   "repository": {
     "type": "git",
@@ -18,6 +18,8 @@
     "@lirx/unsubscribe": "^1.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.3"
-  }
+    "@types/jest": "^29.5.12"
+  },
+  "localDependencies": [],
+  "packageManager": "yarn@4.1.1"
 }

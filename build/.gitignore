@@ -1,41 +1,4 @@
-# Logs
-logs
-*.log
-
-
-# Runtime data
-pids
-*.pid
-*.seed
-
 node_modules/
-dist/
-.cache/
-
-# Users Environment Variables
-.lock-wscript
-.tsdrc
-.typingsrc
-
-# IDE configuration files
-.idea
-.vscode
-*.iml
-
-
-# OS X trash files
-.DS_Store
-
-# eclipse ide
-.project
-.settings
-.classpath
-/node/
-/target/
-
-# Package manager
-#.yarnrc
-.npmrc
 
 .yarn/*
 !.yarn/patches
@@ -50,4 +13,3 @@ dist/
 
 #!.yarn/cache
 .pnp.*
-

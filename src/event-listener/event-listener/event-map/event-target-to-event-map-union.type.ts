@@ -66,6 +66,8 @@ export type IEventTargetToEventMapUnion =
   | [XMLDocument, DocumentEventMap]
   | [XMLHttpRequest, XMLHttpRequestEventMap]
   | [XMLHttpRequestEventTarget, XMLHttpRequestEventTargetEventMap]
-  | [XMLHttpRequestUpload, XMLHttpRequestEventTargetEventMap]
-  ;
+  | [XMLHttpRequestUpload, XMLHttpRequestEventTargetEventMap];
 
+// export type IEventTargetToEventMapUnionIncludingLoose =
+//   | IEventTargetToEventMapUnion
+//   | [any, Record<string, Event>];

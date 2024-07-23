@@ -1,0 +1,65 @@
+import { IEventListenerFromEventMap } from '../types/event-listener.type';
+import { IReadonlyEventTarget } from '../types/readonly-event-target.type';
+import { IUnsubscribe } from '@lirx/unsubscribe';
+
+export type IRemoveEventListener = IUnsubscribe;
+
+export type ICreateEventListenerTarget = Pick<EventTarget, 'addEventListener' | 'removeEventListener'>;
+
+// export type InferCreateEventListenerTargetType<GTarget extends ICreateEventListenerTarget> =
+//   GTarget['addEventListener'] extends ((<K extends keyof Record<infer U, any>>(type: K, ...args: any[]) => void) | ((type: infer G, ...args: any[]) => void))
+//     ?  U
+//     : never;
+
+export type InferCreateEventListenerTargetType<GTarget extends ICreateEventListenerTarget> =
+  GTarget extends {
+      addEventListener<K extends string>(type: infer GType, listener: (this: HTMLElement, ev: Event) => any, options?: boolean | AddEventListenerOptions): void;
+      addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+    }
+    ? GType
+    : never;
+
+export type InferCreateEventListenerTargetEvent<GTarget extends ICreateEventListenerTarget> =
+  GTarget extends {
+      addEventListener<K extends string>(type: infer GType, listener: (this: HTMLElement, ev: Event) => any, options?: boolean | AddEventListenerOptions): void;
+      addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+    }
+    ? GType
+    : never;
+
+export function createEventListener<GTarget extends ICreateEventListenerTarget>(
+  target: GTarget,
+  type: InferCreateEventListenerTargetType<GTarget>,
+  listener: IEventListenerFromEventMap<Record<GType, GEvent>, GType>,
+  options?: boolean | AddEventListenerOptions,
+): IRemoveEventListener;
+export function createEventListener<GType extends string, GEvent extends Event>(
+  target: IReadonlyEventTarget<Record<GType, GEvent>>,
+  type: GType,
+  listener: IEventListenerFromEventMap<Record<GType, GEvent>, GType>,
+  options?: boolean | AddEventListenerOptions,
+): IRemoveEventListener;
+export function createEventListener<GType extends string, GEvent extends Event>(
+  target: IReadonlyEventTarget<Record<GType, GEvent>>,
+  type: GType,
+  listener: IEventListenerFromEventMap<Record<GType, GEvent>, GType>,
+  options?: boolean | AddEventListenerOptions,
+): IRemoveEventListener {
+  target.addEventListener(type, listener, options);
+  return (): void => {
+    target.removeEventListener(type, listener, options);
+  };
+}
+
+type I = InferCreateEventListenerTargetType<HTMLElement>;
+type G = 'a' | string;
+
+const a = createEventListener(window, 'click', () => {
+});
+window.addEventListener('', a);
+
+function h(g: G) {
+
+}
+
+h('');
