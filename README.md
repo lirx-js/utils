@@ -9,7 +9,7 @@ Contains various utilities functions.
 
 ## 📦 Installation
 
-```bash
+```shell
 yarn add @lirx/utils
 # or
 npm install @lirx/utils --save

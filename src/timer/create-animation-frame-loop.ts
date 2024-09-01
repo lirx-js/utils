@@ -1,11 +1,9 @@
-import { IAbortTimer } from './abort-timer.type';
-import { createAnimationFrame } from './create-animation-frame';
+import type { UndoFunction } from '../undo/undo-function.js';
+import { createAnimationFrame } from './create-animation-frame.js';
 
-export function createAnimationFrameLoop(
-  callback: () => void,
-): IAbortTimer {
+export function createAnimationFrameLoop(callback: () => void): UndoFunction {
   let running: boolean = true;
-  let abortAnimationFrame: IAbortTimer;
+  let abortAnimationFrame: UndoFunction;
 
   const loop = () => {
     abortAnimationFrame = createAnimationFrame(() => {

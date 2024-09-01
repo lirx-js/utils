@@ -1,5 +1,5 @@
-import { clearImmediate } from './set-immediate';
-import { ITask, TASKS } from './tasks.constant';
+import { clearImmediate } from './set-immediate.js';
+import { ITask, TASKS } from './tasks.constant.js';
 
 let taskRunning: boolean = false;
 

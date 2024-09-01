@@ -1,13 +1,13 @@
-import { IEqualFunction } from '../equal-function/equal-function.type';
+import { EqualFunction } from '../equal-function/equal-function.type.js';
 
-export interface IDistinctInitialValueOptions<GValue> {
-  initialValue?: GValue;
+export interface DistinctInitialValueOptions<GValue> {
+  readonly initialValue?: GValue;
 }
 
-export interface IDistinctEqualFunctionOptions<GValue> {
-  equal?: IEqualFunction<GValue>;
+export interface DistinctEqualFunctionOptions<GValue> {
+  readonly equal?: EqualFunction<GValue>;
 }
 
-
-export interface IDistinctOptions<GValue> extends IDistinctInitialValueOptions<GValue>, IDistinctEqualFunctionOptions<GValue> {
-}
+export interface DistinctOptions<GValue>
+  extends DistinctInitialValueOptions<GValue>,
+    DistinctEqualFunctionOptions<GValue> {}

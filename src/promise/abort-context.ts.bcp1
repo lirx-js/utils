@@ -1,0 +1,56 @@
+import { Abortable, noop } from '@lirx/utils';
+
+export interface AbortContext<GValue> extends Abortable {
+  readonly abort: AbortContextAbort;
+  readonly resolve: AbortContextResolve<GValue>;
+  readonly cleanup?: AbortContextCleanup;
+}
+
+export interface AbortContextAbort {
+  (reason: unknown): void;
+}
+
+export interface AbortContextResolve<GValue> {
+  (value: GValue): void;
+}
+
+export interface AbortContextCleanup {
+  (): void;
+}
+
+export function abortContext<GValue>({
+  abort,
+  resolve,
+  cleanup = noop,
+  signal,
+}: AbortContext<GValue>): AbortContextResolve<GValue> {
+  if (signal === undefined) {
+    return (value: GValue): void => {
+      cleanup();
+      resolve(value);
+    };
+  } else {
+    if (signal.aborted) {
+      cleanup();
+      abort(signal.reason);
+      return noop;
+    } else {
+      const end = (): void => {
+        signal?.removeEventListener('abort', onAbort);
+        cleanup();
+      };
+
+      const onAbort = (): void => {
+        end();
+        abort(signal!.reason);
+      };
+
+      signal?.addEventListener('abort', onAbort);
+
+      return (value: GValue): void => {
+        end();
+        resolve(value);
+      };
+    }
+  }
+}

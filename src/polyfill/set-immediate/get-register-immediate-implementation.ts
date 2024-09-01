@@ -1,13 +1,11 @@
-import { messageChannelImplementation } from './message-channel-implementation';
-import { nextTickImplementation } from './next-tick-implementation';
-import { postMessageImplementation } from './post-message-implementation';
-import { readyStateChangeImplementation } from './ready-state-change-implementation';
-import { IRegisterImmediate } from './register-immediate.type';
-import { setTimeoutImplementation } from './set-timeout-implementation';
+import { messageChannelImplementation } from './message-channel-implementation.js';
+import { nextTickImplementation } from './next-tick-implementation.js';
+import { postMessageImplementation } from './post-message-implementation.js';
+import { readyStateChangeImplementation } from './ready-state-change-implementation.js';
+import { IRegisterImmediate } from './register-immediate.type.js';
+import { setTimeoutImplementation } from './set-timeout-implementation.js';
 
-function canUsePostMessage(
-  global: any,
-): boolean {
+function canUsePostMessage(global: any): boolean {
   // The test against `importScripts` prevents this implementation from being installed inside a web worker,
   // where `global.postMessage` means something completely different and can't be used for this purpose.
   if (global.postMessage && !global.importScripts) {
@@ -24,19 +22,14 @@ function canUsePostMessage(
   }
 }
 
-export function getRegisterImmediateImplementation(
-  global: any,
-): IRegisterImmediate {
+export function getRegisterImmediateImplementation(global: any): IRegisterImmediate {
   if ({}.toString.call(global.process) === '[object process]') {
     return nextTickImplementation(global.process);
   } else if (canUsePostMessage(global)) {
     return postMessageImplementation(global);
   } else if (global.MessageChannel) {
     return messageChannelImplementation();
-  } else if (
-    global.document
-    && ('onreadystatechange' in global.document.createElement('script'))
-  ) {
+  } else if (global.document && 'onreadystatechange' in global.document.createElement('script')) {
     return readyStateChangeImplementation(global);
   } else {
     return setTimeoutImplementation();

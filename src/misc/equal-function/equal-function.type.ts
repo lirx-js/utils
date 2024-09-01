@@ -1,6 +1,3 @@
-export interface IEqualFunction<GValue> {
-  (
-    a: GValue,
-    b: GValue,
-  ): boolean;
+export interface EqualFunction<GValue> {
+  (a: GValue, b: GValue): boolean;
 }

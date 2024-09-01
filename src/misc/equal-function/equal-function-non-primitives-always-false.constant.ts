@@ -1,6 +1,6 @@
-import { IEqualFunction } from './equal-function.type';
+import { EqualFunction } from './equal-function.type.js';
 
-export const EQUAL_FUNCTION_NON_PRIMITIVES_ALWAYS_FALSE: IEqualFunction<unknown> = (
+export const EQUAL_FUNCTION_NON_PRIMITIVES_ALWAYS_FALSE: EqualFunction<unknown> = (
   a: unknown,
   b: unknown,
 ): boolean => {
@@ -8,7 +8,7 @@ export const EQUAL_FUNCTION_NON_PRIMITIVES_ALWAYS_FALSE: IEqualFunction<unknown>
   const typeB = typeof a;
   if (typeA === typeB) {
     if (typeA === 'object') {
-      return (a === null) && (b === null);
+      return a === null && b === null;
     } else {
       return a === b;
     }

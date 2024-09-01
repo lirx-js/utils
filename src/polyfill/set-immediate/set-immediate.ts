@@ -1,7 +1,7 @@
-import { getGlobalThis } from '../get-global-this';
-import { getRegisterImmediateImplementation } from './get-register-immediate-implementation';
-import { IRegisterImmediate } from './register-immediate.type';
-import { TASKS } from './tasks.constant';
+import { getGlobalThis } from '../get-global-this.js';
+import { getRegisterImmediateImplementation } from './get-register-immediate-implementation.js';
+import { IRegisterImmediate } from './register-immediate.type.js';
+import { TASKS } from './tasks.constant.js';
 
 let registerImmediate: IRegisterImmediate;
 let nextHandle: number = 1;
@@ -18,8 +18,6 @@ export function setImmediate<GArguments extends any[]>(
   return nextHandle++;
 }
 
-export function clearImmediate(
-  handle: number,
-): void {
+export function clearImmediate(handle: number): void {
   TASKS.delete(handle);
 }

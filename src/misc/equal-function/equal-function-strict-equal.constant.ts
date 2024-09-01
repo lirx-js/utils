@@ -1,6 +1,6 @@
-import { IEqualFunction } from './equal-function.type';
+import { EqualFunction } from './equal-function.type.js';
 
-export const EQUAL_FUNCTION_STRICT_EQUAL: IEqualFunction<unknown> = (
+export const EQUAL_FUNCTION_STRICT_EQUAL: EqualFunction<unknown> = (
   a: unknown,
   b: unknown,
 ): boolean => {

@@ -7,7 +7,7 @@ export function inferGlobalThis(): any {
     get: function() {
       return this;
     },
-    configurable: true, // This makes it possible to `delete` the getter later.
+    configurable: true // This makes it possible to `delete` the getter later.
   });
   const globalThis = __magic__;
   delete (Object.prototype as any)['__magic__'];

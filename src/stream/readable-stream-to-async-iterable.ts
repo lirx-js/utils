@@ -1,5 +1,5 @@
 export async function* readableStreamToAsyncIterable<GValue>(
-  readableStream: ReadableStream<GValue>,
+  readableStream: ReadableStream<GValue>
 ): AsyncGenerator<GValue> {
   const reader: ReadableStreamDefaultReader<GValue> = readableStream.getReader();
   try {
