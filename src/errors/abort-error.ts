@@ -1,6 +1,6 @@
-import { CustomError, type CustomErrorOptions } from './custom-error.js';
+import { CustomError, type CustomErrorOptionsForChild } from './custom-error.js';
 
-export interface AbortErrorOptions extends Omit<CustomErrorOptions, 'name'> {
+export interface AbortErrorOptions extends CustomErrorOptionsForChild {
   readonly signal?: AbortSignal;
 }
 

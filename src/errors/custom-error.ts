@@ -3,6 +3,8 @@ export interface CustomErrorOptions<GName extends string = string> extends Reado
   readonly message?: string;
 }
 
+export type CustomErrorOptionsForChild = Omit<CustomErrorOptions<string>, 'name'>;
+
 export class CustomError<GName extends string = string> extends Error {
   readonly name: GName;
 

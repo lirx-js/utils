@@ -1,6 +1,6 @@
-import { CustomError, type CustomErrorOptions } from './custom-error.js';
+import { CustomError, type CustomErrorOptionsForChild } from './custom-error.js';
 
-export interface NetworkErrorOptions extends Omit<CustomErrorOptions, 'name'> {
+export interface NetworkErrorOptions extends CustomErrorOptionsForChild {
   readonly status?: number | undefined;
 }
 
