@@ -1,17 +1,17 @@
 import type { UndoFunction } from '../undo/undo-function.js';
-import { createAnimationFrame } from './create-animation-frame.js';
+import { createIdle } from './create-idle.js';
 
-export function createAnimationFrameLoop(callback: () => void): UndoFunction {
+export function createIdleLoop(callback: () => void, options?: IdleRequestOptions): UndoFunction {
   let running: boolean = true;
-  let abortAnimationFrame: UndoFunction;
+  let abortIdle: UndoFunction;
 
   const loop = () => {
-    abortAnimationFrame = createAnimationFrame(() => {
+    abortIdle = createIdle(() => {
       callback();
       if (running) {
         loop();
       }
-    });
+    }, options);
   };
 
   loop();
@@ -19,7 +19,7 @@ export function createAnimationFrameLoop(callback: () => void): UndoFunction {
   return (): void => {
     if (running) {
       running = false;
-      abortAnimationFrame();
+      abortIdle();
     }
   };
 }
