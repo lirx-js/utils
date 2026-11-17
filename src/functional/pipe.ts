@@ -67,5 +67,5 @@ export function pipe<A, B, C, D, E, F, G, H, I>(
   ...operations: UnaryFunction<any, any>[]
 ): unknown;
 export function pipe(input: any, ...fncs: UnaryFunction<any, any>[]): any {
-  return fncs.reduce((observable: any, pipe: UnaryFunction<any, any>) => pipe(observable), input);
+  return fncs.reduce((fnc: any, pipe: UnaryFunction<any, any>) => pipe(fnc), input);
 }

@@ -1,4 +1,4 @@
-import { EqualFunction } from '../../functional/well-known-functions/equal/equal-function.type.js';
+import { EqualFunction } from '../../../../../@xstd/equal-function/src/equal-function.type.js';
 
 export interface DistinctInitialValueOptions<GValue> {
   readonly initialValue?: GValue;

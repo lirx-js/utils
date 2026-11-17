@@ -74,6 +74,6 @@ export class Pipeable {
     ...operations: UnaryFunction<any, any>[]
   ): unknown;
   pipe(...pipes: UnaryFunction<any, any>[]): any {
-    return pipe.apply(this, pipes as any);
+    return pipes.reduce((fnc: any, pipe: UnaryFunction<any, any>) => pipe(fnc), this);
   }
 }
